@@ -9,15 +9,19 @@ void times_table(void)
 {
 	int first_number = 0;
 	int second_number;
+
 	while(first_number <= 9){
 		second_number = 0;
+		
 		while(second_number <= 9){
-			_putchar(first_number * second_number);
+			_putchar(((first_number * second_number) % 10) + '0');
 			if(first_number > 9)
 				_putchar(',');
+			
 			_putchar(' ');
 			second_number++;
 		}
+		
 		first_number++;
 		_putchar('\n');
 	}
