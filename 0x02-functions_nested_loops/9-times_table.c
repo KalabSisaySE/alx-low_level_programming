@@ -14,7 +14,7 @@ void times_table(void)
 		while(second_number <= 9){
 			_putchar(first_number * second_number);
 			if(first_number > 9)
-				_putchar(', ');
+				_putchar(',');
 			_putchar(' ');
 			second_number++;
 		}
