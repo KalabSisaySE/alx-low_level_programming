@@ -3,6 +3,7 @@
 /**
  * _islower - Checks if a character is an uppercase.
  * @c: The character to be checked.
+ *
  * Return: 1 if character is uppercase, 0 otherwise.
  *
  */
