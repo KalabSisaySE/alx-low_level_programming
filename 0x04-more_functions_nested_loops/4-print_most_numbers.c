@@ -1,12 +1,9 @@
 #include "main.h"
-
-/*
- * print_most_numbers - print numbers from 0 to 9
- * 			escapes 2 and 4.
+/**
+ * print_most_numbers - prints the numbers interleaved
  *
- * Return : Always 0.
+ * Return: numbers
  */
-
 void print_most_numbers(void)
 {
 	int numb;
