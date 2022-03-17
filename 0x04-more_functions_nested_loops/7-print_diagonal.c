@@ -5,14 +5,14 @@
  *
  * Return: nothing.
  */
-void print_diagonal(int n)
+void print_diagonal(int x)
 {
 	int i = 0;
 	int j = 0;
 	
 	for (i=0; i < x; i++)
 	{
-		for (a = 0 ; a < n ; a++)
+		for (j = 0; j < x; j++)
 		{
 
 			_putchar(' ');
