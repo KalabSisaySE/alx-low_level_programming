@@ -1,13 +1,11 @@
 #include "main.h"
 
 /**
- * puts2 - prints every other character of a string starting with
- * 	   first character followed by a new line.
- * @str: the string to be printed.
+ * puts2 - prints every other character of a  string to stdout
+ * @str: string to print
  *
- * Return: void.
+ * Return: void
  */
-
 void puts2(char *str)
 {
 	int i = 0;
@@ -18,5 +16,4 @@ void puts2(char *str)
 		i = i + 2;
 	}
 	_putchar('\n');
-
 }
