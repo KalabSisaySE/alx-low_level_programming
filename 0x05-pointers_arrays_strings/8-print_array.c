@@ -1,0 +1,26 @@
+#include "main.h"
+
+/**
+ * print_array - prints n elements of an array of integers followed
+ * 		 by a new line.
+ * @a - the array to be printed.
+ * @n - the size of the array.
+ *
+ * Retrun: void.
+ */
+
+void print_array(int *a, int n)
+{
+	int i;
+	for(i = 0; i < n; i++)
+	{
+		printf("%d", a[index]);
+
+		if (index == n - 1)
+			continue;
+
+		printf(", ");
+	}
+
+	printf("\n");
+}
