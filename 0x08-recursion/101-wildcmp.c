@@ -38,26 +38,13 @@ char *move_p(char *s1, char *s2, char character, int direction, int match)
  */
 int wildcmp(char *s1, char *s2)
 {
-	if (*s1 == END_OF_STRING && *s2 == END_OF_STRING)
-		return (TRUE);
-	if (*s2 == WILD_CARD)
-	{
-		s2 = move_p(s1, s2, WILD_CARD, RIGHT, NON_MATCH);
-		if (*s2 == END_OF_STRING)
-			return (TRUE);
-		if (*s1 == END_OF_STRING)
-			return (FALSE);
-		/* recursively call wildcmp to see if next char is match */
-		if (wildcmp(move_p(s1, /* if no match, s1 is stop pointer*/
-				   /* below moves s1 pointer to end of string */
-				   move_p(s2, s1, END_OF_STRING, RIGHT, MATCH),
-				   *s2,
-				   LEFT,
-				   MATCH), /* move s1 back for a match of s2 */
-			    s2) == TRUE)
-			return (TRUE);
-	}
-	if (*s1 != *s2)
-		return (FALSE);
-	return (wildcmp(s1 + 1, s2 + 1));
+	if (*s2 == '*' && *(s2 + 1) != '\0' && *s1 == '\0')
+		return (0);
+	if (*s1 == '\0' && *s2 == '\0')
+		return (1);
+	if (*s1 == *s2)
+		return (wildcmp(s1 + 1, s2 + 1));
+	if (*s2 == '*')
+		return (wildcmp(s1, s2 + 1) || wildcmp(s1 + 1, s2));
+	return (0);
 }
