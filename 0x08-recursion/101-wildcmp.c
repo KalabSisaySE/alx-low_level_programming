@@ -1,58 +1,35 @@
 #include "main.h"
+#define RIGHT 1
+#define LEFT -1
+#define TRUE (1 == 1)
+#define FALSE !TRUE
+#define MATCH 1
+#define NON_MATCH 0
+#define END_OF_STRING '\0'
+#define WILD_CARD '*'
 
 /**
- * wildcmp - compare two strings with "wildcard expansion" capabilities
- * @s1: string 1
- * @s2: string 2
- * Return: 1 if strings can be considered identical, else 0
+ * move_p - move pointer to 'character' in 'direction' seeking 'match'
+ * @s1: check point to stop in rare circumstances
+ * @s2: input string to move pointer from
+ * @character: character to find next match or find first non-match of
+ * @direction: direction to move pointer
+ *     forward (d = RIGHT) or backwards (d = LEFT)
+ * @match: find first match (m = MATCH) or non-match of c (m = NON_MATCH)
+ * Return: pointer to match in input string
  */
-
-int wildcmp(char *s1, char *s2)
+char *move_p(char *s1, char *s2, char character, int direction, int match)
 {
-	if (*s1 == '\0' && *s2 == '\0')
-		return (1);
-	else if (*s1 == '\0' || *s2 == '\0')
-	{
-		if (*s1 == '\0' && *s2 == '*')
-			return wildcmp(s1, ++s2);
-		else if (*s1 == '*' && *s2 == '\0')
-			return wildcmp(++s1, s2);
-		return (0);
-	}
-
-	if (*s1 == *s2)
-	{
-		return wildcmp(++s1, ++s2);
-	}
-	else if (*s1 == '*')
-	{
-		if (*(s1 + 1) == '*')
-			return wildcmp(++s1, s2);
-		else
-		{
-			return wildcmp(s1, findsrc(s2, *(s1 + 1), 0, 0) + s2);
-		}
-	}
-	else if (*s2 == '*')
-	{
-		if (*(s2 + 1) == '*')
-			return wildcmp(s1, ++s2);
-		else
-		{
-			return wildcmp(s1 + findsrc(s1, *(s2 + 1), 0, 0), s2);
-		}
-	}
-
-	return (0);
-
+	if (s1 == s2 /* checks if string pointers are equal (used if s1 = s1 */
+	    || (match == MATCH && *s2 == character)
+	    || (match == NON_MATCH && *s2 != character))
+		return (s2);
+	return (move_p(s1,
+		       (direction == RIGHT ? s2 + 1 : s2 - 1),
+		       character,
+		       direction,
+		       match));
 }
+/**
+ * wildcmp - checks is strings could be identical considering * wildcard
 
-int findsrc(char *s, char c, int i, int p)
-{
-	if (*(s + i) == '\0')
-		return (p + 1);
-	else if (*(s + i) == c || *(s + i) == '*')
-		p = i;
-
-	return (findsrc(s, c, i + 1, p));
-}
