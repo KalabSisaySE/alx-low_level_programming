@@ -16,14 +16,18 @@ int int_index(int *array, int size, int (*cmp)(int))
 	if(size <= 0)
 		return -1;
 
-	while(i < size)
+
+	if(array && size && cmp)
 	{
+		while(i < size)
+		{
 
-		if(cmp(array[i]) == 1)
-			return index;
-
-		i++;
-		index++;
+			if(cmp(array[i]) == 1)
+				return index;
+	
+			i++;
+			index++;
+		}
 	}
 
 	return -1;
