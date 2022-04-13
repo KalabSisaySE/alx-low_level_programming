@@ -6,15 +6,14 @@
  * @size: size of the array
  * @cmp: the function that will be used.
  *
- * Return: index or -1
+ * Return: first index or -1
  */
 int int_index(int *array, int size, int (*cmp)(int))
 {
 	int i = 0;
-	int index = 0;
 
 	if(size <= 0)
-		return -1;
+		return (-1);
 
 
 	if(array && size && cmp)
@@ -23,14 +22,13 @@ int int_index(int *array, int size, int (*cmp)(int))
 		{
 
 			if(cmp(array[i]) == 1)
-				return index;
+				return (i);
 	
 			i++;
-			index++;
 		}
 	}
 
-	return -1;
+	return (-1);
 }
 
 
