@@ -1,26 +1,24 @@
 #include "lists.h"
-/**
- * print_list - function to print node contents
- * @h: pointer to node struct
- * Return: Always Successful
- */
-size_t print_list(const list_t *h)
-{
-	unsigned int i;
-	const list_t *temp = NULL;
 
-	i = 0;
+/**
+ * list_len  - function to get length of node
+ * @h: pointer to nodes
+ * Return: Always succesful
+ */
+size_t list_len(const list_t *h)
+{
+	const list_t *temp;
+	unsigned int count;
+
+	temp = malloc(sizeof(list_t));
+	if (temp == NULL)
+		return (0);
 	temp = h;
+	count  = 0;
 	while (temp != NULL)
 	{
-		if (temp->str ==  NULL)
-			printf("[0] (nil)\n");
-		
-		else
-			printf("[%d] %s\n", temp->len, temp->str);
-
 		temp  = temp->next;
-		i++;
+		count++;
 	}
-	return (i);
+	return (count);
 }
