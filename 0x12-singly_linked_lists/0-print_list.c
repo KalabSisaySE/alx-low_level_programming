@@ -1,24 +1,21 @@
 #include "lists.h"
 
 /**
- * list_len  - function to get length of node
- * @h: pointer to nodes
- * Return: Always succesful
+ * print_list - prints all the elements of a list_t list
+ * @h: pointer to the start of the list
+ *
+ * Return: number of nodes in the list
  */
-size_t list_len(const list_t *h)
+size_t print_list(const list_t *h)
 {
-	const list_t *temp;
-	unsigned int count;
+	const list_t *tmp;
+	unsigned int i;
 
-	temp = malloc(sizeof(list_t));
-	if (temp == NULL)
-		return (0);
-	temp = h;
-	count  = 0;
-	while (temp != NULL)
+	tmp = h;
+	for (i = 0; tmp; i++)
 	{
-		temp  = temp->next;
-		count++;
+		printf("[%u] %s\n", tmp->len, tmp->str);
+		tmp = tmp->next;
 	}
-	return (count);
+	return (i);
 }
